@@ -1,11 +1,13 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import Value from "./src/componrnt/Value";
+import RingProgress from "./src/componrnt/RingProgress";
 
 export default function App() {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
+      <RingProgress progress={0.39} />
       <View style={styles.values}>
         <Value label="Steps" value="1000" />
         <Value label="Distance" value="10 km" />

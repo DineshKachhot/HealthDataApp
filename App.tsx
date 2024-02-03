@@ -1,16 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
+import Value from "./src/componrnt/Value";
 
-interface ValueProps {
-  label: string;
-  value: string;
-}
-const Value = ({ label, value }: ValueProps) => (
-  <View style={styles.valueContainer}>
-    <Text style={styles.label}>{label}</Text>
-    <Text style={styles.value}>{value}</Text>
-  </View>
-);
 export default function App() {
   return (
     <View style={styles.container}>

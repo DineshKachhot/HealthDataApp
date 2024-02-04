@@ -23,13 +23,37 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.endometriose.StepCounter"
+      "package": "com.endometriose.StepCounter",
+      "permissions": [
+        "android.permission.health.READ_STEPS",
+        "android.permission.health.WRITE_STEPS",
+        "android.permission.health.READ_FLOORS_CLIMBED",
+        "android.permission.health.WRITE_FLOORS_CLIMBED",
+        "android.permission.health.READ_DISTANCE",
+        "android.permission.health.WRITE_DISTANCE"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
-      "react-native-health"
+      "react-native-health",
+      "react-native-health-connect",
+      "expo-build-properties",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "compileSdkVersion": 34,
+            "targetSdkVersion": 34,
+            "minSdkVersion": 26,
+            "buildToolsVersion": "34.0.0"
+          },
+          "ios": {
+            "deploymentTarget": "13.4"
+          }
+        }
+      ]
     ]
   }
 }

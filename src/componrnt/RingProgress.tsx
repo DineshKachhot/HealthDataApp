@@ -53,6 +53,7 @@ const RingProgress = ({
         width: radius * 2,
         height: radius * 2,
         alignSelf: "center",
+        marginVertical: 50,
       }}
     >
       <Svg>

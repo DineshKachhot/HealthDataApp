@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Platform } from "react-native";
 import appleHealthKit, {
   HealthKitPermissions,
   HealthInputOptions,
@@ -27,14 +28,21 @@ export const useHealthData = (date: Date) => {
   const [distance, setDistance] = useState(0);
 
   useEffect(() => {
-    appleHealthKit.initHealthKit(permissions, (error) => {
-      if (error) {
-        console.log(error);
-        return;
+    if (Platform.OS !== "ios") {
+        return
+    }
+    appleHealthKit.isAvailable((isAvailable) => {
+      if (isAvailable) {
+        appleHealthKit.initHealthKit(permissions, (error) => {
+            if (error) {
+              console.log(error);
+              return;
+            }
+            setHasPermission(true);
+            // You can request data
+          });
       }
-      setHasPermission(true);
-      // You can request data
-    });
+    })
   }, []);
 
   useEffect(() => {

@@ -64,70 +64,6 @@ export const useHealthData = (date: Date) => {
       unit: appleHealthKit.Constants.Units.meter,
     };
 
-    const saveStepsOptions: HealthValueOptions = {
-      value: 250,
-      unit: appleHealthKit.Constants.Units.count,
-      startDate: new Date().toISOString(),
-      endDate: new Date().toISOString(),
-    };
-
-    for (let i = 1; i <= 10; i++) {
-        const previousDate = new Date();
-        const currentDate = new Date();
-        previousDate.setDate(currentDate.getDate() - i);
-        // console.log('Date to log data:- ', previousDate.toISOString());
-
-        const randomSteps = Math.floor(Math.random() * 10000);
-        const randomFlightsClimbed = Math.floor(Math.random() * 100);
-        const randomDistance = Math.floor(Math.random() * 10000);
-        const saveStepsOptions: HealthValueOptions = {
-          value: randomSteps,
-          unit: appleHealthKit.Constants.Units.count,
-          startDate: previousDate.toISOString(),
-          endDate: previousDate.toISOString(),
-        }
-        const saveFlightsClimbedOptions: HealthValueOptions = {
-          value: randomFlightsClimbed,
-          unit: appleHealthKit.Constants.Units.count,
-          startDate: previousDate.toISOString(),
-          endDate: previousDate.toISOString(),
-        }
-        const saveDistanceOptions: HealthValueOptions = {
-          value: randomDistance,
-          unit: appleHealthKit.Constants.Units.meter,
-          startDate: previousDate.toISOString(),
-          endDate: previousDate.toISOString(),
-        }
-
-        console.log('All options:- ', saveStepsOptions, saveDistanceOptions)
-
-        // appleHealthKit.saveSteps(saveStepsOptions, (error, result) => {
-        //     if (error) {
-        //         console.log("Error save steps:- ", error);
-        //         return;
-        //     }
-        //     console.log("Result save steps:- ", result);
-        // })
-
-        // appleHealthKit.saveWalkingRunningDistance(saveDistanceOptions, (error, result) => {
-        //     if (error) {
-        //         console.log("Error save distance:- ", error);
-        //         return;
-        //     }
-        //     console.log("Result save distance:- ", result);
-        // })
-
-      }
-
-    // appleHealthKit.saveSteps(saveStepsOptions, (error, result) => {
-    //   if (error) {
-    //     console.log("Error save steps:- ", error);
-    //     return;
-    //   }
-
-    //   console.log("Result save steps:- ", result);
-    // });
-
     appleHealthKit.getStepCount(options, (error, results) => {
       if (error) {
         console.log(error);
@@ -159,7 +95,7 @@ export const useHealthData = (date: Date) => {
         setDistance(result.value);
       }
     });
-  }, [hasPermission]);
+  }, [hasPermission, date]);
 
   async function readAndroidHealthData() {
      const sdkStatus = await getSdkStatus();
@@ -220,7 +156,7 @@ export const useHealthData = (date: Date) => {
       }
         
       readAndroidHealthData();
-  }, [hasPermission]);
+  }, [hasPermission, date]);
 
   return {
     steps,

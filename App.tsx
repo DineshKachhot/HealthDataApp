@@ -36,7 +36,7 @@ export default function App() {
           color="#C3FF53"
         />
       </View>
-      <RingProgress progress={steps / GOAL} />
+      <RingProgress progress={steps / GOAL} radius={120} strokeWidth={40} />
       <View style={styles.values}>
         <Value label="Steps" value={steps.toString()} />
         <Value label="Distance" value={(distance / 1000).toFixed(2)} />
@@ -54,7 +54,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     padding: 24,
   },
-  values: { flexDirection: "row", columnGap: 25, flexWrap: "wrap", rowGap: 50 },
+  values: {
+    flexDirection: "row",
+    columnGap: 60,
+    flexWrap: "wrap",
+    rowGap: 30,
+  },
   valueContainer: {},
   label: { color: "white" },
   value: {
@@ -65,6 +70,7 @@ const styles = StyleSheet.create({
   date: {
     color: "white",
     fontSize: 20,
+    fontWeight: "bold",
   },
   datePicker: {
     alignItems: "center",
@@ -74,5 +80,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     gap: 20,
+    width: "100%",
   },
 });

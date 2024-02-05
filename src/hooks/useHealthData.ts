@@ -39,8 +39,8 @@ export const useHealthData = (date: Date) => {
     if (Platform.OS !== "ios") {
         return
     }
-    appleHealthKit.isAvailable((isAvailable) => {
-      if (isAvailable) {
+    appleHealthKit.isAvailable((error, results) => {
+      if (!error && results) {
         appleHealthKit.initHealthKit(permissions, (error) => {
             if (error) {
               console.log(error);
@@ -63,7 +63,6 @@ export const useHealthData = (date: Date) => {
       includeManuallyAdded: true,
       unit: appleHealthKit.Constants.Units.meter,
     };
-
     appleHealthKit.getStepCount(options, (error, results) => {
       if (error) {
         console.log(error);
